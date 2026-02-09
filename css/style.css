@@ -1,0 +1,349 @@
+/* --- VARIABLES GLOBALES --- */
+:root {
+    --oro: #FFD700;
+    --naranja-fuego: #ff8c00;
+    --amarillo-brillante: #ffcc00;
+    --glow: 0 0 20px rgba(255, 215, 0, 0.7);
+    --gradiente-inazuma: linear-gradient(180deg, #ffb100 0%, #ff8c00 100%);
+}
+
+/* --- BASE Y PREFERENCIAS --- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: url('../img/SI_NDS_InazumaEleven.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Capa Dinámica Claro/Oscuro controlada por PHP */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+body.oscuro::before { background: rgba(0, 0, 0, 0.6); }
+body.claro::before { background: rgba(255, 255, 255, 0.4); }
+
+/* --- CONTENEDORES --- */
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding-top: 30px;
+}
+
+h1 {
+    font-size: 3rem;
+    text-shadow: 3px 3px 0 var(--oro);
+    text-align: center;
+    color: #000;
+    margin-top: 20px;
+}
+
+/* --- MENÚ DE NAVEGACIÓN --- */
+.menu {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.menu a {
+    font-size: 1.2rem;
+    margin: 0 10px;
+    color: #000;
+    text-decoration: none;
+    text-shadow: 2px 2px 0 var(--oro);
+    font-weight: bold;
+}
+
+/* --- COMPONENTE: GEOLOCALIZACIÓN --- */
+#info-geo {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 215, 0, 0.85);
+    border: 3px solid #000;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* --- ⚡ CARRUSEL DE BANNERS (Tienda) ⚡ --- */
+.carrusel-marco {
+    width: 100%;
+    max-width: 1000px;
+    height: 400px;
+    margin: 30px auto;
+    overflow: hidden;
+    border: 6px solid var(--oro);
+    border-radius: 30px;
+    position: relative;
+    box-shadow: var(--glow), 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.carrusel-pistas {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+}
+
+.slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
+}
+
+.slide span {
+    position: relative;
+    z-index: 2;
+    color: var(--oro);
+    width: 100%;
+    padding: 25px;
+    text-align: center;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0 #000;
+}
+
+/* --- 🌀 CARRUSEL DE ÍTEMS (Lista de Deseos) 🌀 --- */
+.carousel-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 40px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    width: 90%;
+    margin: 0 auto;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.item {
+    min-width: 260px;
+    max-width: 260px;
+}
+
+.carousel-btn {
+    background: linear-gradient(#ffcc00, #ff8c00);
+    border: 3px solid var(--oro);
+    color: black;
+    font-size: 2rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    text-shadow: 2px 2px 0 var(--oro);
+    box-shadow: 0 0 15px rgba(255, 180, 0, 1);
+    transition: 0.2s;
+    z-index: 10;
+}
+
+.carousel-btn:hover { transform: scale(1.2); }
+.carousel-btn.left { position: absolute; left: 10px; }
+.carousel-btn.right { position: absolute; right: 10px; }
+
+/* --- 🛒 TARJETAS DE PRODUCTO --- */
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--gradiente-inazuma);
+    border-radius: 20px;
+    border: 4px solid var(--oro);
+    box-shadow: 0 0 20px rgba(255, 200, 0, 0.8);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover { transform: translateY(-10px); }
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    background: rgba(255,255,255,0.1);
+}
+
+.nombre {
+    font-size: 1.4rem;
+    text-shadow: 2px 2px 0 var(--oro);
+    color: #000;
+}
+
+.precio {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #000;
+}
+
+/* --- 🔘 BOTONES Y FORMULARIOS --- */
+.btn, .preferencias-box button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background: linear-gradient(var(--amarillo-brillante), var(--naranja-fuego));
+    border: 3px solid var(--oro);
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #cc9a00;
+    transition: 0.2s;
+    text-transform: uppercase;
+    font-family: inherit;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+/* Estilo para los select de preferencias */
+.preferencias-box {
+    width: 400px;
+    margin: 40px auto;
+    padding: 2rem;
+    background: var(--gradiente-inazuma);
+    border-radius: 25px;
+    border: 4px solid var(--oro);
+    text-align: center;
+}
+
+select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 3px solid var(--oro);
+    border-radius: 10px;
+    background: #fff7d1;
+    font-family: inherit;
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA EL LOGIN --- */
+
+/* Contenedor principal que centra el formulario en pantalla */
+.form-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* El cuadro del formulario (Estilo "Supertecnia") */
+#loginForm {
+    width: 380px;
+    padding: 2.5rem;
+    background: var(--gradiente-inazuma); /* El naranja que definimos antes */
+    border: 5px solid var(--oro);
+    border-radius: 30px;
+    box-shadow: 
+        0 0 25px rgba(255, 215, 0, 0.6), /* Resplandor dorado */
+        0 15px 35px rgba(0, 0, 0, 0.5);   /* Sombra de profundidad */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Título "BIENVENIDO" dentro del login */
+#loginForm h2 {
+    font-size: 2.5rem;
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 0 var(--oro);
+    letter-spacing: 1px;
+}
+
+/* Etiquetas de los campos */
+.input-group label {
+    font-size: 1.1rem;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 15px;
+    display: block;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+}
+
+/* Campos de entrada de texto */
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border: 3px solid #333;
+    border-radius: 12px;
+    background: #fff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Efecto foco: al escribir, el borde brilla como un rayo */
+.input-group input:focus {
+    border-color: var(--oro);
+    box-shadow: 0 0 10px var(--oro);
+    transform: scale(1.02);
+}
+
+/* Texto de ayuda/error debajo de los inputs (KeyUp) */
+.feedback-text {
+    font-size: 0.85rem;
+    height: 1.2rem;
+    margin: 5px 0;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Caja de error (cuando el login falla) */
+.error-box {
+    margin-top: 15px;
+    background: #ff4d4d;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #b30000;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    animation: shake 0.4s ease-in-out; /* Efecto de vibración si hay error */
+}
+
+/* Animación de error */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Ajuste del botón para que ocupe todo el ancho */
+#loginForm .btn {
+    margin-top: 20px;
+    cursor: pointer;
+}
