@@ -1,349 +1,343 @@
-/* --- VARIABLES GLOBALES --- */
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN BASE (Común para todo el proyecto)
+   ========================================================================== */
 :root {
     --oro: #FFD700;
     --naranja-fuego: #ff8c00;
     --amarillo-brillante: #ffcc00;
     --glow: 0 0 20px rgba(255, 215, 0, 0.7);
     --gradiente-inazuma: linear-gradient(180deg, #ffb100 0%, #ff8c00 100%);
+    --negro-transparente: rgba(0, 0, 0, 0.6);
+    --blanco-transparente: rgba(255, 255, 255, 0.4);
 }
 
-/* --- BASE Y PREFERENCIAS --- */
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+    margin: 0; padding: 0; min-height: 100vh;
     background: url('../img/SI_NDS_InazumaEleven.jpg') no-repeat center center fixed;
-    background-size: cover;
-    position: relative;
-    transition: all 0.3s ease;
+    background-size: cover; position: relative;
+    transition: background 0.3s ease;
 }
 
-/* Capa Dinámica Claro/Oscuro controlada por PHP */
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-}
-body.oscuro::before { background: rgba(0, 0, 0, 0.6); }
-body.claro::before { background: rgba(255, 255, 255, 0.4); }
+/* Capas dinámicas de Tema (Claro/Oscuro) */
+body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+body.oscuro::before { background: var(--negro-transparente); }
+body.claro::before { background: var(--blanco-transparente); }
 
-/* --- CONTENEDORES --- */
-.contenedor {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding-top: 30px;
-}
+.contenedor { width: 90%; max-width: 1200px; margin: auto; padding: 20px 0; }
 
 h1 {
-    font-size: 3rem;
-    text-shadow: 3px 3px 0 var(--oro);
-    text-align: center;
-    color: #000;
-    margin-top: 20px;
+    font-size: 3rem; text-shadow: 3px 3px 0 var(--oro);
+    text-align: center; color: #000; text-transform: uppercase;
 }
 
-/* --- MENÚ DE NAVEGACIÓN --- */
-.menu {
-    text-align: center;
-    margin-bottom: 20px;
+/* Botones Universales (Inazuma Style) */
+.btn {
+    padding: 12px 20px; font-size: 1.1rem; font-weight: bold;
+    background: linear-gradient(var(--amarillo-brillante), var(--naranja-fuego));
+    border: 3px solid var(--oro); border-radius: 12px;
+    cursor: pointer; text-transform: uppercase; color: #000;
+    box-shadow: 0 4px 0 #cc9a00; transition: all 0.1s;
 }
+.btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #cc9a00; }
 
+/* Menú de Navegación */
+.menu { text-align: center; margin-bottom: 30px; }
 .menu a {
-    font-size: 1.2rem;
-    margin: 0 10px;
-    color: #000;
-    text-decoration: none;
-    text-shadow: 2px 2px 0 var(--oro);
-    font-weight: bold;
+    font-size: 1.1rem; margin: 0 15px; color: #000;
+    text-decoration: none; text-shadow: 1px 1px 0 var(--oro);
+    font-weight: bold; text-transform: uppercase;
 }
 
-/* --- COMPONENTE: GEOLOCALIZACIÓN --- */
-#info-geo {
-    text-align: center;
-    padding: 15px;
-    background: rgba(255, 215, 0, 0.85);
-    border: 3px solid #000;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+/* ==========================================================================
+   2. LOGIN (login.php)
+   ========================================================================== */
+.form-wrapper {
+    background: var(--gradiente-inazuma); border: 5px solid var(--oro);
+    border-radius: 30px; padding: 2.5rem; width: 400px;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    box-shadow: var(--glow); text-align: center;
 }
 
-/* --- ⚡ CARRUSEL DE BANNERS (Tienda) ⚡ --- */
+.input-group { margin-bottom: 20px; text-align: left; }
+.input-group label { display: block; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; }
+
+input[type="text"], input[type="password"] {
+    width: 100%; padding: 12px; border: 3px solid #333; border-radius: 12px; font-size: 1rem;
+}
+
+.error-box {
+    background: #ff4d4d; color: white; padding: 10px; border-radius: 10px;
+    margin-top: 15px; font-weight: bold; border: 2px solid #b30000;
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+/* ==========================================================================
+   3. TIENDA - CARDS Y CARRUSEL (tienda.php)
+   ========================================================================== */
 .carrusel-marco {
-    width: 100%;
-    max-width: 1000px;
-    height: 400px;
-    margin: 30px auto;
-    overflow: hidden;
-    border: 6px solid var(--oro);
-    border-radius: 30px;
-    position: relative;
-    box-shadow: var(--glow), 0 10px 30px rgba(0,0,0,0.5);
+    width: 100%; max-width: 1000px; height: 350px;
+    margin: 20px auto 40px; overflow: hidden; border: 6px solid var(--oro);
+    border-radius: 30px; position: relative; box-shadow: var(--glow);
 }
+.carrusel-pistas { display: flex; height: 100%; transition: transform 0.7s ease-in-out; }
+.slide { min-width: 100%; height: 100%; background-size: cover; background-position: center; display: flex; align-items: flex-end; }
+.slide span { background: rgba(0,0,0,0.7); color: var(--oro); width: 100%; padding: 15px; text-align: center; font-size: 1.8rem; }
 
-.carrusel-pistas {
-    display: flex;
-    height: 100%;
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide {
-    min-width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: flex-end;
-    position: relative;
-}
-
-.slide::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
-}
-
-.slide span {
-    position: relative;
-    z-index: 2;
-    color: var(--oro);
-    width: 100%;
-    padding: 25px;
-    text-align: center;
-    font-size: 2.2rem;
-    text-transform: uppercase;
-    text-shadow: 3px 3px 0 #000;
-}
-
-/* --- 🌀 CARRUSEL DE ÍTEMS (Lista de Deseos) 🌀 --- */
-.carousel-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    margin-top: 40px;
-}
-
-.carousel {
-    display: flex;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    width: 90%;
-    margin: 0 auto;
-    gap: 20px;
-    padding: 20px 0;
-}
-
-.item {
-    min-width: 260px;
-    max-width: 260px;
-}
-
-.carousel-btn {
-    background: linear-gradient(#ffcc00, #ff8c00);
-    border: 3px solid var(--oro);
-    color: black;
-    font-size: 2rem;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    text-shadow: 2px 2px 0 var(--oro);
-    box-shadow: 0 0 15px rgba(255, 180, 0, 1);
-    transition: 0.2s;
-    z-index: 10;
-}
-
-.carousel-btn:hover { transform: scale(1.2); }
-.carousel-btn.left { position: absolute; left: 10px; }
-.carousel-btn.right { position: absolute; right: 10px; }
-
-/* --- 🛒 TARJETAS DE PRODUCTO --- */
-.productos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+.productos { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; margin-top: 30px; 
 }
 
 .card {
-    background: var(--gradiente-inazuma);
-    border-radius: 20px;
-    border: 4px solid var(--oro);
-    box-shadow: 0 0 20px rgba(255, 200, 0, 0.8);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s ease;
+    background: var(--gradiente-inazuma); border: 4px solid var(--oro);
+    border-radius: 25px; padding: 20px; display: flex; flex-direction: column;
+    justify-content: space-between; min-height: 520px; text-align: center;
 }
 
-.card:hover { transform: translateY(-10px); }
+.card img { width: 100%; height: 180px; object-fit: contain; background: rgba(255,255,255,0.2); border-radius: 15px; margin-bottom: 15px; }
 
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: contain;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    background: rgba(255,255,255,0.1);
+/* Estrellas con aire */
+.valoracion { margin: 15px 0; display: flex; justify-content: center; gap: 8px; }
+.valoracion span { font-size: 1.5rem; cursor: pointer; transition: 0.2s; }
+.valoracion span:hover { transform: scale(1.3); }
+
+.feedback-async { height: 25px; font-weight: bold; color: #333; margin-bottom: 10px; }
+
+/* Botones de Card separados */
+.card .acciones { display: flex; flex-direction: column; gap: 12px; margin-top: auto; }
+
+/* ==========================================================================
+   4. CARRITO (carrito.php) - DISEÑO ESTRECHO
+   ========================================================================== */
+.carrito-contenedor {
+    background: rgba(255, 255, 255, 0.95); padding: 25px;
+    border: 4px solid var(--oro); border-radius: 20px;
+    max-width: 800px; margin: 30px auto; box-shadow: var(--glow);
 }
 
-.nombre {
-    font-size: 1.4rem;
-    text-shadow: 2px 2px 0 var(--oro);
-    color: #000;
-}
+#tabla-carrito { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+#tabla-carrito th { background: #333; color: var(--oro); padding: 12px; text-transform: uppercase; }
+#tabla-carrito td { padding: 12px; border-bottom: 1px solid #ddd; text-align: center; font-weight: bold; }
 
-.precio {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: #000;
-}
+input[type="number"] { width: 50px; padding: 5px; border-radius: 5px; border: 2px solid var(--naranja-fuego); }
 
-/* --- 🔘 BOTONES Y FORMULARIOS --- */
-.btn, .preferencias-box button {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    background: linear-gradient(var(--amarillo-brillante), var(--naranja-fuego));
-    border: 3px solid var(--oro);
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #cc9a00;
-    transition: 0.2s;
-    text-transform: uppercase;
-    font-family: inherit;
-    text-shadow: 1px 1px 0 #fff;
-}
+.total { text-align: right; font-size: 2rem; font-weight: bold; margin: 20px 0; text-shadow: 1px 1px 0 var(--oro); }
 
-.btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+/* Botones Carrito en fila */
+.carrito-contenedor .acciones { display: flex; flex-direction: row; justify-content: space-between; gap: 20px; }
+.carrito-contenedor .btn { width: auto; min-width: 180px; }
 
-/* Estilo para los select de preferencias */
-.preferencias-box {
-    width: 400px;
-    margin: 40px auto;
-    padding: 2rem;
-    background: var(--gradiente-inazuma);
-    border-radius: 25px;
-    border: 4px solid var(--oro);
-    text-align: center;
-}
+/* ==========================================================================
+   5. LISTA DE DESEOS (lista_deseos.php) - ESTILO COLECCIONISTA
+   ========================================================================== */
 
-select {
-    width: 100%;
-    padding: 0.6rem;
-    border: 3px solid var(--oro);
-    border-radius: 10px;
-    background: #fff7d1;
-    font-family: inherit;
-}
-
-/* --- ESTILOS ESPECÍFICOS PARA EL LOGIN --- */
-
-/* Contenedor principal que centra el formulario en pantalla */
-.form-wrapper {
-    height: 100vh;
+/* Contenedor principal con efecto de profundidad */
+.carousel-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    margin: 50px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px); /* Efecto cristalizado */
+    border-radius: 40px;
+    border: 4px solid rgba(255, 215, 0, 0.3);
+    max-width: 900px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* El cuadro del formulario (Estilo "Supertecnia") */
-#loginForm {
-    width: 380px;
-    padding: 2.5rem;
-    background: var(--gradiente-inazuma); /* El naranja que definimos antes */
-    border: 5px solid var(--oro);
-    border-radius: 30px;
-    box-shadow: 
-        0 0 25px rgba(255, 215, 0, 0.6), /* Resplandor dorado */
-        0 15px 35px rgba(0, 0, 0, 0.5);   /* Sombra de profundidad */
-    position: relative;
+/* El carrusel que contiene las cartas */
+.carousel {
+    display: flex;
     overflow: hidden;
+    width: 320px; /* Tamaño de una carta */
+    scroll-behavior: smooth;
+    border-radius: 20px;
+    border: 5px solid var(--oro);
+    box-shadow: var(--glow);
+    background: #fff;
 }
 
-/* Título "BIENVENIDO" dentro del login */
-#loginForm h2 {
-    font-size: 2.5rem;
-    color: #000;
-    text-transform: uppercase;
+/* Cada carta individual en la lista de deseos */
+.carousel .item {
+    min-width: 100%;
+    padding: 25px;
     text-align: center;
-    margin-bottom: 1.5rem;
-    text-shadow: 3px 3px 0 var(--oro);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.carousel .item img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+    margin-bottom: 20px;
+}
+
+.carousel .item .nombre {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.carousel .item .precio {
+    font-size: 1.5rem;
+    color: var(--naranja-fuego);
+    font-weight: bold;
+    background: #333;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 10px;
+    color: var(--oro);
+}
+
+/* Botones de navegación (Flechas) */
+.carousel-btn {
+    background: var(--gradiente-inazuma);
+    border: 3px solid #000;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.carousel-btn:hover {
+    transform: scale(1.15);
+    background: var(--oro);
+    box-shadow: var(--glow);
+}
+
+.carousel-btn:active {
+    transform: scale(0.9);
+}
+
+/* Mensaje de lista vacía */
+.wishlist-empty {
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 50px;
+    color: #000;
+    background: var(--gradiente-inazuma);
+    border: 4px dashed #000;
+    border-radius: 20px;
+    text-shadow: 1px 1px 0 var(--oro);
+}
+
+/* ==========================================================================
+   6. PREFERENCIAS (preferencias.php) - PANEL DE CONTROL AVANZADO
+   ========================================================================== */
+
+.preferencias-box {
+    max-width: 480px;
+    margin: 60px auto;
+    background: var(--gradiente-inazuma);
+    border: 5px solid var(--oro);
+    border-radius: 35px;
+    padding: 35px;
+    text-align: center;
+    box-shadow: var(--glow), 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.preferencias-box h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #000;
+    text-shadow: 2px 2px 0 rgba(255,255,255,0.6);
     letter-spacing: 1px;
 }
 
-/* Etiquetas de los campos */
-.input-group label {
-    font-size: 1.1rem;
-    color: #000;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-top: 15px;
+/* Estilo de los grupos de selección */
+.preferencias-box label {
     display: block;
-    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+    text-align: left;
+    font-weight: bold;
+    margin: 20px 0 8px 5px;
+    text-transform: uppercase;
+    color: #222;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
 }
 
-/* Campos de entrada de texto */
-.input-group input {
+.preferencias-box select {
     width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
+    padding: 14px;
+    border-radius: 15px;
     border: 3px solid #333;
-    border-radius: 12px;
-    background: #fff;
-    transition: all 0.3s ease;
+    background-color: white;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
     outline: none;
+    transition: all 0.3s ease;
+    appearance: none; /* Quita el estilo por defecto del navegador */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
 }
 
-/* Efecto foco: al escribir, el borde brilla como un rayo */
-.input-group input:focus {
-    border-color: var(--oro);
-    box-shadow: 0 0 10px var(--oro);
+.preferencias-box select:focus {
+    border-color: var(--naranja-fuego);
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
     transform: scale(1.02);
 }
 
-/* Texto de ayuda/error debajo de los inputs (KeyUp) */
-.feedback-text {
-    font-size: 0.85rem;
-    height: 1.2rem;
-    margin: 5px 0;
+/* Botón Guardar (Verde Épico) */
+.preferencias-box button[type="submit"] {
+    width: 100%;
+    margin-top: 35px;
+    padding: 16px;
+    font-size: 1.3rem;
     font-weight: bold;
-    color: #444;
-}
-
-/* Caja de error (cuando el login falla) */
-.error-box {
-    margin-top: 15px;
-    background: #ff4d4d;
     color: white;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #b30000;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    animation: shake 0.4s ease-in-out; /* Efecto de vibración si hay error */
-}
-
-/* Animación de error */
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-
-/* Ajuste del botón para que ocupe todo el ancho */
-#loginForm .btn {
-    margin-top: 20px;
+    background: linear-gradient(#4CAF50, #2E7D32);
+    border: 3px solid #1B5E20;
+    border-radius: 18px;
     cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 5px 0 #1B5E20;
+    transition: all 0.1s ease;
+}
+
+.preferencias-box button[type="submit"]:hover {
+    filter: brightness(1.1);
+}
+
+.preferencias-box button[type="submit"]:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1B5E20;
+}
+
+/* Estilo para el botón Volver */
+.btn-volver {
+    display: inline-block;
+    width: 100%;
+    margin-top: 15px;
+    background: #666 !important;
+    border: 3px solid #444 !important;
+    color: white !important;
+    box-shadow: 0 5px 0 #333 !important;
+}
+
+.btn-volver:active {
+    box-shadow: 0 1px 0 #333 !important;
 }

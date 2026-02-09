@@ -88,7 +88,7 @@ $productos = [
                             <input type="hidden" name="id" value="<?= $id ?>">
                             <button class="btn" type="submit"><?= $T[$idioma_actual]["añadir_deseos"] ?></button>
                         </form>
-                        <button class="btn" onclick="añadirDesdePHP(<?= $id ?>)">
+                        <button class="btn" onclick="añadirDesdeTienda(<?= $id ?>)">
                             <?= $T[$idioma_actual]["añadir_carrito"] ?>
                         </button>
                     </div>

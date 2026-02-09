@@ -58,6 +58,32 @@ function cambiarCantidad(id, cantidad) {
     actualizarCarritoVisual();
 }
 
+// js/carrito.js (Añade esto al final)
+
+function añadirDesdeTienda(id) {
+    // 1. Buscamos los datos en el array global que inyectamos desde PHP
+    // 'productosPHP' es el nombre que usamos en el script de tienda.php
+    const datos = productosPHP[id]; 
+
+    if (!datos) {
+        console.error("Producto no encontrado");
+        return;
+    }
+
+    // 2. Creamos un objeto compatible con la lógica del carrito
+    const productoParaCarrito = {
+        id: id,
+        nombre: datos.nombre,
+        precio: datos.precio
+    };
+
+    // 3. Llamamos a la función principal que ya tenemos
+    añadirAlCarrito(productoParaCarrito);
+
+    // 4. Feedback visual (opcional)
+    alert("¡Fichaje completado! " + datos.nombre + " añadido.");
+}
+
 // CALCULAR TOTAL
 function calcularTotal() {
     const carrito = cargarCarrito();
