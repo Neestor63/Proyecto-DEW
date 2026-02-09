@@ -104,7 +104,6 @@ $productos = [
     <script src="js/productos.js"></script>
     <script src="js/carrito.js"></script>
     <script src="js/carrusel.js"></script>
-    <script src="js/avanzado.js"></script>
+    <script src="js/nuevasFunciones.js"></script>
 </body>
-
 </html>
