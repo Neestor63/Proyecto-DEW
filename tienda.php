@@ -57,6 +57,7 @@ $productos = [
                 <a href="lista_deseos.php"><?= $T[$idioma_actual]["lista_deseos"] ?></a>
                 <a href="carrito.php"><?= $T[$idioma_actual]["carrito"] ?></a>
                 <a href="preferencias.php"><?= $T[$idioma_actual]["preferencias"] ?></a>
+                <a href="gestion_lotes.php"><?= $T[$idioma_actual]["lotes"] ?></a>
                 <a href="logout.php"><?= $T[$idioma_actual]["cerrar_sesion"] ?></a>
             </nav>
         </header>

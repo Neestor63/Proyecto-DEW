@@ -24,7 +24,8 @@ $T = [
         "normal" => "Normal",
         "guardar" => "Guardar",
         "volver" =>  "Volver",
-        "error_login" => "Fuera de juego"
+        "error_login" => "Fuera de juego",
+        "lotes" => "Lotes de juego"
     ],
     
     "en" => [
@@ -52,6 +53,7 @@ $T = [
         "normal" => "Normal",
         "guardar" => "Keep",
         "volver" =>  "Return",
-        "error_login" => "outside"
+        "error_login" => "outside",
+        "lotes" => "Packs"
     ],
 ];

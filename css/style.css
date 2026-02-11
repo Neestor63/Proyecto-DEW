@@ -341,3 +341,180 @@ input[type="number"] { width: 50px; padding: 5px; border-radius: 5px; border: 2p
 .btn-volver:active {
     box-shadow: 0 1px 0 #333 !important;
 }
+
+
+/* ==========================================================================
+   7. GESTIÓN DE LOTES POO (gestion_lotes.php) - ESTILO PANEL TÁCTICO
+   ========================================================================== */
+
+/* Contenedor principal que hereda el cristalizado del carrito */
+.panel-lotes {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border: 5px solid var(--oro);
+    border-radius: 30px;
+    max-width: 900px;
+    margin: 40px auto;
+    box-shadow: var(--glow), 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.panel-lotes h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 0 var(--oro);
+}
+
+.panel-lotes p {
+    text-align: center;
+    font-weight: bold;
+    color: #444;
+    text-transform: uppercase;
+}
+
+/* Formulario estilo "Pizarra Táctica" */
+.form-lotes {
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px dashed #333;
+    margin-bottom: 30px;
+}
+
+.form-lotes select, 
+.form-lotes input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #333;
+    font-family: inherit;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Bloque de visualización de Objetos (Estilo Terminal de Datos) */
+.resumen-poo {
+    margin-top: 30px;
+}
+
+.resumen-poo h2 {
+    color: #000;
+    text-transform: uppercase;
+    border-bottom: 4px solid var(--naranja-fuego);
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.resumen-poo h3 {
+    background: #333;
+    color: var(--oro);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+/* El cuadro verde donde sale el print_r */
+.debug-obj {
+    background: #0d1117; /* Fondo tipo código */
+    color: #39ff14;    /* Verde neón Inazuma */
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #333;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    overflow-x: auto;
+    box-shadow: inset 0 0 15px rgba(57, 255, 20, 0.2);
+}
+
+/* Estilización de los botones dentro del panel */
+.panel-lotes .acciones-lotes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+/* Estilo para etiquetas */
+.panel-lotes label {
+    display: block;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+/* Contenedor de la sección */
+.seccion-lotes {
+    margin-top: 30px;
+}
+
+.total-banner {
+    background: #333;
+    color: var(--oro);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border: 2px solid var(--oro);
+}
+
+/* Grid para las mini-cards */
+.grid-lotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Card individual de cada Objeto */
+.card-lote-individual {
+    background: white;
+    border: 3px solid #333;
+    border-radius: 15px;
+    position: relative;
+    padding-top: 30px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    box-shadow: 5px 5px 0px #333;
+}
+
+.card-lote-individual:hover {
+    transform: scale(1.05);
+    border-color: var(--naranja-fuego);
+}
+
+.card-numero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #333;
+    color: white;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 0;
+}
+
+.card-contenido {
+    padding: 15px;
+    text-align: center;
+}
+
+.precio-lote {
+    display: block;
+    font-size: 1.5rem;
+    color: #e67e22;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.card-footer-lote {
+    background: #f0f0f0;
+    font-size: 0.7rem;
+    padding: 5px;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid #ddd;
+}
