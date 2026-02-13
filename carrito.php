@@ -21,7 +21,7 @@ require_once "idiomas.php";
 <head>
     <meta charset="UTF-8">
     <title><?= $T[$idioma_actual]["carrito"] ?></title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
 </head>
 <body>
 

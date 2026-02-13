@@ -38,7 +38,7 @@ require_once "idiomas.php";
     <meta charset="UTF-8">
     <title><?= $T[$idioma_actual]["preferencias"] ?> - Inazuma Shop</title>
     
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
     
     <link rel="stylesheet" href="<?= $fuente_actual === 'inazuma' ? 'https://fonts.googleapis.com/css2?family=Bangers&display=swap' : 'https://fonts.googleapis.com/css2?family=Roboto&display=swap' ?>">
     

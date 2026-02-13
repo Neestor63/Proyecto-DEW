@@ -35,7 +35,7 @@ if (isset($_POST['comprar_lote'])) {
 <head>
     <meta charset="UTF-8">
     <title>Lotes Inazuma - Gestión POO</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
     <style>
         body { font-family: <?= $fuente_actual === 'inazuma' ? "'Bangers', cursive" : "'Roboto', sans-serif" ?> !important; }
     </style>
