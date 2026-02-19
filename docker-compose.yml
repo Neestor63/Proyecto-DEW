@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # Servicio de Base de Datos (MySQL)
+  # Servicio de Base de Datos
   db:
     image: mysql:8.0
     container_name: mysql_db
@@ -12,21 +12,20 @@ services:
       MYSQL_USER: "admin"
       MYSQL_PASSWORD: "1234"
     ports:
-      - "3307:3306" # Tu PC usará el 3307 para no chocar con XAMPP
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
-  # Servicio de PHP (Ahora correctamente alineado)
+  # Servicio de PHP (Ahora bien indentado)
   php:
-    build: . 
+    build: .
     container_name: php_app
     restart: always
     ports:
       - "8080:80"
     volumes:
-      - ./public/:/var/www/html
-      - ./src:/var/www/html
+      - ./:/var/www/html
     depends_on:
       - db
 
