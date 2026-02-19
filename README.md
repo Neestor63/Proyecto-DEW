@@ -1,8 +1,4 @@
-# Proyecto-DEW
-Proyecto de segundo trimestre DEW
-Aquí tienes un README.md profesional, estructurado y con un estilo épico de Inazuma Eleven, diseñado para que tu profesor vea que el proyecto es sólido, modular y cumple con todos los requisitos técnicos.
-
-Copia este contenido en un archivo llamado README.md en la raíz de tu proyecto.
+# Proyecto-DEW-DSW
 
 ⚽ Inazuma Eleven Web Shop - Proyecto DEW
 ¡Bienvenido a la tienda definitiva de Inazuma Eleven! Este proyecto es una aplicación web dinámica que simula un e-commerce temático, integrando tecnologías de servidor (PHP) y cliente (JavaScript) con un enfoque en la experiencia de usuario y el rendimiento.

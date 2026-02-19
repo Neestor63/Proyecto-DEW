@@ -17,15 +17,14 @@ require_once "idiomas.php";
 
 // Mismos productos que en tienda.php
 $productos = [
-    ["nombre" => "Inazuma Eleven", "precio" => 90.00, "imagen" => "img/inazumaEleven.jpg"],
-    ["nombre" => "Inazuma Eleven 2", "precio" => 15.99, "imagen" => "img/inazumaEleven2.jpg"],
-    ["nombre" => "Inazuma Eleven 3", "precio" => 20.99, "imagen" => "img/inazumaEleven3.jpg"],
-    ["nombre" => "Inazuma Eleven Go", "precio" => 25.99, "imagen" => "img/inazumaElevenGo.jpg"],
-    ["nombre" => "Inazuma Eleven Go CS", "precio" => 30.99, "imagen" => "img/inazumaElevenGoChrono.jpg"],
-    ["nombre" => "Inazuma Eleven Strikers", "precio" => 35.99, "imagen" => "img/inazumaElevenStrikers.jpg"],
-    ["nombre" => "Inazuma Eleven VR", "precio" => 70.00, "imagen" => "img/inazumaElevenVr.jpg"],
+    ["nombre" => "Inazuma Eleven", "precio" => 90.00, "imagen" => "public\assets\img\inazumaEleven.jpg"],
+    ["nombre" => "Inazuma Eleven 2", "precio" => 15.99, "imagen" => "public\assets\img\inazumaEleven2.jpg"],
+    ["nombre" => "Inazuma Eleven 3", "precio" => 20.99, "imagen" => "public\assets\img\inazumaEleven3.jpg"],
+    ["nombre" => "Inazuma Eleven Go", "precio" => 25.99, "imagen" => "public\assets\img\inazumaElevenGo.jpg"],
+    ["nombre" => "Inazuma Eleven Go CS", "precio" => 30.99, "imagen" => "public\assets\img\inazumaElevenGoChrono.jpg"],
+    ["nombre" => "Inazuma Eleven Strikers", "precio" => 35.99, "imagen" => "public\assets\img\inazumaElevenStrikers.jpg"],
+    ["nombre" => "Inazuma Eleven VR", "precio" => 70.00, "imagen" => "public\assets\img\inazumaElevenVr.jpg"],
 ];
-
 // Leer cookie de lista de deseos
 $wishlist = isset($_COOKIE["wishlist"]) ? json_decode($_COOKIE["wishlist"], true) : [];
 if (!is_array($wishlist)) {

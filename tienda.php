@@ -18,13 +18,13 @@ require_once "idiomas.php";
 
 // 3. Definición de Datos (Lo ideal sería un archivo JSON o BD, pero lo mantenemos limpio aquí)
 $productos = [
-    ["nombre" => "Inazuma Eleven", "precio" => 90.00, "imagen" => "img/inazumaEleven.jpg"],
-    ["nombre" => "Inazuma Eleven 2", "precio" => 15.99, "imagen" => "img/inazumaEleven2.jpg"],
-    ["nombre" => "Inazuma Eleven 3", "precio" => 20.99, "imagen" => "img/inazumaEleven3.jpg"],
-    ["nombre" => "Inazuma Eleven Go", "precio" => 25.99, "imagen" => "img/inazumaElevenGo.jpg"],
-    ["nombre" => "Inazuma Eleven Go CS", "precio" => 30.99, "imagen" => "img/inazumaElevenGoChrono.jpg"],
-    ["nombre" => "Inazuma Eleven Strikers", "precio" => 35.99, "imagen" => "img/inazumaElevenStrikers.jpg"],
-    ["nombre" => "Inazuma Eleven VR", "precio" => 70.00, "imagen" => "img/inazumaElevenVr.jpg"],
+    ["nombre" => "Inazuma Eleven", "precio" => 90.00, "imagen" => "public\assets\img\inazumaEleven.jpg"],
+    ["nombre" => "Inazuma Eleven 2", "precio" => 15.99, "imagen" => "public\assets\img\inazumaEleven2.jpg"],
+    ["nombre" => "Inazuma Eleven 3", "precio" => 20.99, "imagen" => "public\assets\img\inazumaEleven3.jpg"],
+    ["nombre" => "Inazuma Eleven Go", "precio" => 25.99, "imagen" => "public\assets\img\inazumaElevenGo.jpg"],
+    ["nombre" => "Inazuma Eleven Go CS", "precio" => 30.99, "imagen" => "public\assets\img\inazumaElevenGoChrono.jpg"],
+    ["nombre" => "Inazuma Eleven Strikers", "precio" => 35.99, "imagen" => "public\assets\img\inazumaElevenStrikers.jpg"],
+    ["nombre" => "Inazuma Eleven VR", "precio" => 70.00, "imagen" => "public\assets\img\inazumaElevenVr.jpg"],
 ];
 ?>
 <!DOCTYPE html>
@@ -64,9 +64,9 @@ $productos = [
 
         <section class="carrusel-marco">
             <div class="carrusel-pistas" id="carrusel-pistas">
-                <div class="slide" style="background-image: url('img/SI_Wii_InazumaElevenStrikers.jpg')"><span>TORNEO STRIKERS ACTIVADO</span></div>
-                <div class="slide" style="background-image: url('img/inazumaElevenVr.jpg')"><span>¡NUEVO: VICTORY ROAD!</span></div>
-                <div class="slide" style="background-image: url('img/SI_NDS_InazumaEleven.jpg')"><span>REVIVE LA TRILOGÍA ORIGINAL</span></div>
+                <div class="slide" style="background-image: url('./public/assets/img/inazumaElevenStrikers.jpg')"><span>TORNEO STRIKERS ACTIVADO</span></div>
+                <div class="slide" style="background-image: url('./public/assets/img/inazumaElevenVR.jpg')"><span>¡NUEVO: VICTORY ROAD!</span></div>
+                <div class="slide" style="background-image: url('./public/assets/img/inazumaEleven.jpg')"><span>REVIVE LA TRILOGÍA ORIGINAL</span></div>
             </div>
         </section>
 
@@ -102,9 +102,9 @@ $productos = [
         const productosPHP = <?= json_encode($productos, JSON_UNESCAPED_UNICODE) ?>;
     </script>
 
-    <script src="js/productos.js"></script>
-    <script src="js/carrito.js"></script>
-    <script src="js/carrusel.js"></script>
-    <script src="js/nuevasFunciones.js"></script>
+    <script src="public\assets\js\productos.js"></script>
+    <script src="public\assets\js\carrito.js"></script>
+    <script src="public\assets\js\carrusel.js"></script>
+    <script src="public\assets\js\nuevasFunciones.js"></script>
 </body>
 </html>
